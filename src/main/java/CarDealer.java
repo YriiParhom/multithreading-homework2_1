@@ -12,10 +12,11 @@ public class CarDealer {
     public void receiveCar(){
         for (int i = 0; i < CARS; i++){
             try{
+                synchronized (this){
                 Thread.sleep(RECIEVE_TIME);
                 cars.add(new Car("Toyota", "Camry"));
                 System.out.println(Thread.currentThread().getName() + " выпустил 1 " + cars.get(0));
-                synchronized (this){
+
                     notify();
                 }
             }catch (InterruptedException e){
